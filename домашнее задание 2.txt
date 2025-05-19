@@ -1,0 +1,36 @@
+
+
+    import requests
+    import numpy as np
+    import pandas as pd
+
+    # Используем requests для получения данных
+    response = requests.get("https://jsonplaceholder.typicode.com/users")
+    data = response.json()
+
+    # Преобразуем в DataFrame
+    df = pd.DataFrame(data)
+
+    # Извлекаем ID пользователей и создаем массив numpy
+    user_ids = np.array(df['id'])
+
+    print("Данные пользователей:")
+    print(df[['name', 'email', 'phone']].head())
+
+    print("\nСтатистика ID пользователей:")
+    print(f"Среднее: {np.mean(user_ids)}")
+    print(f"Максимум: {np.max(user_ids)}")
+    print(f"Минимум: {np.min(user_ids)}")
+
+    Данные пользователей:
+                   name                      email                  phone
+    0     Leanne Graham          Sincere@april.biz  1-770-736-8031 x56442
+    1      Ervin Howell          Shanna@melissa.tv    010-692-6593 x09125
+    2  Clementine Bauch         Nathan@yesenia.net         1-463-123-4447
+    3  Patricia Lebsack  Julianne.OConner@kory.org      493-170-9623 x156
+    4  Chelsey Dietrich   Lucio_Hettinger@annie.ca          (254)954-1289
+
+    Статистика ID пользователей:
+    Среднее: 5.5
+    Максимум: 10
+    Минимум: 1
